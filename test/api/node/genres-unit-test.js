@@ -3,20 +3,15 @@ const request = require('supertest');
 
 const app = require('../../../server.js');
 
-describe('Insert /movies', () => {
+describe('Insert /genres', () => {
 
     it('OK, inserting movies data', (done) => {
 
-        request(app).post('api/movie/create').send({
-            "name": "Sholey",
-            "description": "Drama",
-            "releasingDate": "02/02/2020",
-            "Genre": {
+        request(app).post('api/genres/create').send({
+
                 "name": "Action",
                 "description": "comedy"
-            },
-            "duration": 3,
-            "rating": 5
+
         }).then((res) => {
             const body = res.body;
             expect(body).to.contain.property('message');
@@ -26,9 +21,9 @@ describe('Insert /movies', () => {
 
 });
 
-describe('Show /Show movies details', () => {
+describe('Show /Show Genres details', () => {
     it('OK, show the data ', (done) => {
-        request(app).get('api/movie/get').expect(200).
+        request(app).get('api/genres/get').expect(200).
             then((res) => {
                 const body = res.body;
                 expect(body).to.contain.property('_id');
@@ -37,9 +32,9 @@ describe('Show /Show movies details', () => {
     });
 });
 
-describe('Delete,  /Delete the data ', () => {
+describe('Delete,  /Delete genres data ', () => {
     it('OK, Deleted ', (done) => {
-        request(app).get('api/movie/' + '5fc222b74403096b34a22af9').expect(200).
+        request(app).get('api/genres/delete/' + '5fc26e8140d22b0003dd1b13').expect(200).
             then((res) => {
                 const body = res.body;
                 expect(body).to.contain.property('message');
