@@ -39,7 +39,7 @@ describe('Show /Show movies details', () => {
 
 describe('Delete,  /Delete the data ', () => {
     it('OK, Deleted ', (done) => {
-        request(app).get('api/movie/' + '5fc222b74403096b34a22af9').expect(200).
+        request(app).get('api/movie/delete' + '5fc222b74403096b34a22af9').expect(200).
             then((res) => {
                 const body = res.body;
                 expect(body).to.contain.property('message');
